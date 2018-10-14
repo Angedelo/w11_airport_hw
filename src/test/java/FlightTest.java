@@ -24,6 +24,7 @@ public class FlightTest {
     @Test
     public void canAddPlaneToFlight(){
         assertEquals(planeOne, flightOne.addPlane(planeOne));
+        assertEquals(planeOne, flightOne.getPlane());
     }
 
 }

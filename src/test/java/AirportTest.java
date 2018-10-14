@@ -8,19 +8,16 @@ public class AirportTest {
     Plane planeOne;
     Plane planeTwo;
     Plane planeThree;
-    Passenger passenger;
-    Flight flightOne;
-    Flight flightTwo;
-    Ticket ticketOne;
-    Ticket ticketTwo;
+    Passenger passengerOne;
+    Passenger passengerTwo;
 
     @Before
     public void before(){
+        passengerOne = new Passenger("Alice", "Chicago");
+        passengerTwo = new Passenger("Seamus", "Wigan");
         planeOne = new Plane(Type.HAIRDRYER, "KLM");
         planeTwo = new Plane(Type.BOEING747, "KLM");
         planeThree = new Plane(Type.AIRBUSA380, "KLM");
-        ticketOne = new Ticket(passenger, flightOne);
-        ticketTwo = new Ticket(passenger, flightTwo);
         airport = new Airport("EDI");
         airport.addPlaneToHangar(planeOne);
         airport.addPlaneToHangar(planeTwo);
@@ -47,6 +44,11 @@ public class AirportTest {
     }
 
     @Test
+    public void spareTicketCount(){
+        assertEquals(0, airport.getSpareTickets().size());
+    }
+
+    @Test
     public void canAddPlanesToHangar(){
         airport.addPlaneToHangar(planeThree);
         assertEquals(3, airport.getAvailablePlanes().size());
@@ -68,7 +70,20 @@ public class AirportTest {
     }
 
     @Test
+    public void canCreateTicketsForFlight(){
+        airport.createFlight(9, "Chicago");
+        airport.addPlaneToFlight();
+        airport.createTickets();
+        assertEquals(3, airport.getSpareTickets().size());
+    }
+
+    @Test
     public void canSellTickets(){
-        
+        airport.createFlight(9, "Chicago");
+        airport.addPlaneToFlight();
+        airport.createTickets();
+        airport.sellTicket(passengerOne);
+        assertEquals(1, airport.getSoldTickets());
+        assertEquals(2, airport.getSpareTickets().size());
     }
 }

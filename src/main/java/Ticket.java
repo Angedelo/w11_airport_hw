@@ -2,7 +2,7 @@ public class Ticket {
     private Passenger passenger;
     private Flight flight;
 
-    public Ticket(Passenger passenger, Flight flight){
+    public Ticket(Flight flight){
         this.passenger = passenger;
         this.flight = flight;
     }
@@ -14,5 +14,9 @@ public class Ticket {
 
     public Passenger getPassenger() {
         return this.passenger;
+    }
+
+    public void addPassenger(Passenger passenger) {
+        this.passenger = passenger;
     }
 }

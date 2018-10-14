@@ -12,7 +12,7 @@ public class TicketTest {
     public void before(){
         passenger = new Passenger("Alice Rees", "Bhutan");
         flight = new Flight(001, "Chicago");
-        ticket = new Ticket(passenger, flight);
+        ticket = new Ticket(flight);
     }
 
     @Test
@@ -21,7 +21,8 @@ public class TicketTest {
     }
 
     @Test
-    public void hasPassenger(){
+    public void canAddPassenger(){
+        ticket.addPassenger(passenger);
         assertEquals(passenger, ticket.getPassenger());
     }
 }

@@ -8,9 +8,23 @@ public class Plane {
     public Plane(Type type, String airline){
         this.type = type;
         this.airline = airline;
+        passengers = new ArrayList<>();
+
     }
 
     public Type getType() {
         return this.type;
+    }
+
+    public String getAirline() {
+        return this.airline;
+    }
+
+    public String addPassenger(Passenger passenger) {
+        if (passengers.size() < this.type.getCapacity()) {
+            passengers.add(passenger);
+            return "Welcome aboard";
+        }
+        return "Sorry, no room at the inn";
     }
 }

@@ -6,7 +6,6 @@ public class Flight {
     public Flight(int flightNum, String destination){
         this.flightNum = flightNum;
         this.destination = destination;
-        this.plane = null;
     }
 
 
@@ -19,6 +18,6 @@ public class Flight {
     }
 
     public Plane addPlane(Plane planeOne) {
-        return this.plane = planeOne;
+        return plane = planeOne;
     }
 }
